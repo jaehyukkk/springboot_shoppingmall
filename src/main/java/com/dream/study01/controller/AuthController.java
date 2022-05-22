@@ -8,10 +8,13 @@ import com.dream.study01.dto.UserResponseDto;
 import com.dream.study01.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("/auth")
@@ -20,7 +23,7 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/signup")
-    public ResponseEntity<UserResponseDto> signup(@RequestBody UserRequestDto userRequestDto){
+    public ResponseEntity<UserResponseDto> signup(@RequestBody @Valid UserRequestDto userRequestDto){
         return ResponseEntity.ok(authService.signup(userRequestDto));
     }
 

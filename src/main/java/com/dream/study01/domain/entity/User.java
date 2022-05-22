@@ -21,13 +21,16 @@ public class User {
 
     private String password;
 
+    private String name;
+
     @Enumerated(EnumType.STRING)
     private UserRole userRole;
 
     @Builder
-    public User(String email, String password, UserRole userRole) {
+    public User(String email, String password, String name, UserRole userRole) {
         this.email = email;
         this.password = password;
+        this.name = name;
         this.userRole = userRole;
     }
 }
