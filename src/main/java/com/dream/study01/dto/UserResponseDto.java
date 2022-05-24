@@ -10,11 +10,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class UserResponseDto {
 
+    private Long id;
     private String email;
     private String name;
 
 
     public static UserResponseDto of(User user){
-        return new UserResponseDto(user.getEmail(), user.getName());
+        return new UserResponseDto(user.getId(),user.getEmail(), user.getName());
     }
 }
