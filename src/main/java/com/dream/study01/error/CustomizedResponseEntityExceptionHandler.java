@@ -27,6 +27,11 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
         return new ResponseEntity(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @ExceptionHandler(ForbiddenException.class)
+    public ResponseEntity<ErrorResponse> ForbiddenException(ForbiddenException ex){
+        ErrorResponse response = new ErrorResponse(ex.getErrorCode());
+        return new ResponseEntity<>(response, HttpStatus.valueOf(ex.getErrorCode().getStatus()));
+    }
     //test
 //    @ExceptionHandler(SignUpNotFoundException.class)
 //    public final ResponseEntity<Object> handleUserNotFoundException(SignUpNotFoundException ex, WebRequest request) {

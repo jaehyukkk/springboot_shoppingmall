@@ -3,6 +3,8 @@ package com.dream.study01.service;
 import com.dream.study01.domain.entity.Post;
 import com.dream.study01.domain.repository.PostRepository;
 import com.dream.study01.dto.PostDto;
+import com.dream.study01.error.ErrorCode;
+import com.dream.study01.error.ForbiddenException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -70,6 +72,9 @@ public class PostService {
         String postEmail = postRepository.findWriterInPost(id);
         Long postUserId = userService.getUserInfo(postEmail).getId();
 
+        if(userId != postUserId){
+            throw new ForbiddenException("권한없음", ErrorCode.FORBIDDEN);
+        }
 
          postRepository.deleteById(id);
     }
