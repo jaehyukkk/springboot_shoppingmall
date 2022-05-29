@@ -26,7 +26,7 @@ public class UserRequestDto {
                 .email(email)
                 .password(passwordEncoder.encode(password))
                 .name(name)
-                .userRole(UserRole.ROLE_USER)
+                .userRole(UserRole.ROLE_ADMIN)
                 .build();
     }
 

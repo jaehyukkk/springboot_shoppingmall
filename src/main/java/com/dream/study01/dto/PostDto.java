@@ -30,21 +30,6 @@ public class PostDto {
         return post;
     }
 
-//    public PostDto(Long id, String title, String content){
-//        this.id = id;
-//        this.title = title;
-//        this.content = content;
-//    }
-//
-//    public Post toEntityUpdate(){
-//        Post post = Post.builder()
-//                .id(id)
-//                .content(content)
-//                .title(title)
-//                .build();
-//        return post;
-//    }
-
     @Builder
     public PostDto(Long id, String writer, String title, String content, Integer hit, LocalDateTime createdDate, LocalDateTime updateDate) {
         this.id = id;

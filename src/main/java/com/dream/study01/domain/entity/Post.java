@@ -43,7 +43,6 @@ public class Post {
     private LocalDateTime updatedDate;
 
     @Builder
-
     public Post(Long id, String writer, String title, String content, Integer hit) {
         this.id = id;
         this.writer = writer;

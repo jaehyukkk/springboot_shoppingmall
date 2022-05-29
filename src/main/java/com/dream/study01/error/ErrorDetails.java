@@ -25,10 +25,5 @@ public class ErrorDetails {
         this.message = message;
         this.detail = detail;
     }
-//    public ErrorDetails(Date timestamp, String message, Map<String, String> details) {
-//        super();
-//        this.timestamp = timestamp;
-//        this.message = message;
-//        this.details = details;
-//    }
+
 }
