@@ -24,8 +24,13 @@ public class CategoryController {
 
     @GetMapping("/api/v1/main-category")
     public ResponseEntity<Object> getMainCategory(){
-        List<MainCategoryDto> mainCategoryList = mainCategoryService.getMainCategoryList();
-        return new ResponseEntity<>(mainCategoryList, HttpStatus.OK);
+        try{
+            List<MainCategoryDto> mainCategoryList = mainCategoryService.getMainCategoryList();
+            return new ResponseEntity<>(mainCategoryList, HttpStatus.OK);
+        }catch (IllegalArgumentException ex){
+            return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @GetMapping("/api/v1/sub-category/{mainCategoryId}")

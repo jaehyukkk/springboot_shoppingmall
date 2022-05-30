@@ -10,8 +10,12 @@ import com.dream.study01.dto.shop.file.FileDto;
 import com.dream.study01.dto.shop.goods.GoodsDto;
 import com.dream.study01.dto.shop.goods.GoodsRequestDto;
 import com.dream.study01.service.shop.file.FileService;
+import com.dream.study01.service.shop.file.FileSetting;
 import com.dream.study01.util.MD5Generator;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -37,36 +41,26 @@ public class GoodsService {
         this.fileService = fileService;
     }
 
+    @Transactional
     public Goods createGoods(GoodsRequestDto goodsRequestDto, List<MultipartFile> multipartFiles) throws IOException, NoSuchAlgorithmException {
         Goods goods = categorySettingEntityTransformation(goodsRequestDto);
 
         for(MultipartFile multipartFile : multipartFiles){
-            String origFilename = multipartFile.getOriginalFilename();
-            String ext = origFilename.substring(origFilename.lastIndexOf(".") + 1);
-            String filename = new MD5Generator(origFilename).toString()+"."+ext;
-            String savePath = System.getProperty("user.dir") + "/files";
-            if(!new java.io.File(savePath).exists()){
-                try{
-                    new java.io.File(savePath).mkdir();
-                } catch (Exception e){
-                    e.printStackTrace();
-                }
-            }
-            String filePath = savePath + "/" + filename;
-            multipartFile.transferTo(new java.io.File(filePath));
 
             FileDto fileDto = new FileDto();
-            fileDto.setOrigFilename(origFilename);
-            fileDto.setFilename(filename);
-            fileDto.setFilePath(filePath);
+            FileSetting fileSetting = new FileSetting(multipartFile);
+
+            fileDto.setFilename(fileSetting.getFilename());
+            fileDto.setFilePath(fileSetting.getFilePath());
+            fileDto.setOrigFilename(fileSetting.getOrigFilename());
             fileDto.setGoods(goods);
-//            goods.addFile(fileDto.toEntity());
+
             fileService.createFile(fileDto);
         }
-
         return goodsRepository.save(goods);
     }
 
+    @Transactional
     public void updateGoods(GoodsRequestDto goodsRequestDto, List<MultipartFile> multipartFiles) throws IOException, NoSuchAlgorithmException {
         Goods goods = categorySettingEntityTransformation(goodsRequestDto);
         Long getGoodsId = goodsRequestDto.getId();
@@ -74,39 +68,31 @@ public class GoodsService {
 
         LocalDateTime createdDate = getGoods.getCreatedDate();
         goodsRequestDto.setCreatedDate(createdDate);
+
         int i = 0;
         if(multipartFiles != null){
             for(MultipartFile multipartFile : multipartFiles){
-                String origFilename = multipartFile.getOriginalFilename();
-                String ext = origFilename.substring(origFilename.lastIndexOf(".") + 1);
-                String filename = new MD5Generator(origFilename).toString()+"."+ext;
-                String savePath = System.getProperty("user.dir") + "/files";
-                if(!new java.io.File(savePath).exists()){
-                    try{
-                        new java.io.File(savePath).mkdir();
-                    } catch (Exception e){
-                        e.printStackTrace();
-                    }
-                }
-                String filePath = savePath + "/" + filename;
-                multipartFile.transferTo(new java.io.File(filePath));
-
                 FileDto fileDto = new FileDto();
+
+                FileSetting fileSetting = new FileSetting(multipartFile);
+
+                fileDto.setFilename(fileSetting.getFilename());
+                fileDto.setFilePath(fileSetting.getFilePath());
+                fileDto.setOrigFilename(fileSetting.getOrigFilename());
+                fileDto.setGoods(goods);
+
                 if(!goodsRequestDto.getFileIds().isEmpty()){
                     fileDto.setId(goodsRequestDto.getFileIds().get(i));
                 }
-                fileDto.setOrigFilename(origFilename);
-                fileDto.setFilename(filename);
-                fileDto.setFilePath(filePath);
-                fileDto.setGoods(goods);
                 goods.addFile(fileDto.toEntity());
-//                fileService.createFile(fileDto);
                 i++;
             }
         }
         goods.update(goodsRequestDto);
         goodsRepository.save(goods);
     }
+
+
 
 
     public List<GoodsDto> getGoodsList(){
@@ -125,15 +111,51 @@ public class GoodsService {
         return goodsDto;
     }
 
+
+
+    public List<GoodsDto> getMainCategoryGoodsList(Long mainCategoryId){
+        List<Goods> goodsList = goodsRepository.findAllByMainCategory(mainCategoryFindById(mainCategoryId));
+        List<GoodsDto> goodsDtoList = new ArrayList<>();
+        for(Goods goods : goodsList){
+            GoodsDto goodsDto = new GoodsDto(goods);
+            goodsDtoList.add(goodsDto);
+        }
+        return goodsDtoList;
+
+    }
+
+    public List<GoodsDto> getSubCategoryGoodsList(Long mainCategoryId, Long subCategoryId, Pageable pageable){
+
+        Page<Goods> goodsList = goodsRepository.findAllByMainCategoryAndSubCategory(
+                mainCategoryFindById(mainCategoryId)
+                ,subCategoryFindById(subCategoryId)
+                ,pageable);
+
+        List<GoodsDto> goodsDtoList = new ArrayList<>();
+        for(Goods goods : goodsList){
+            GoodsDto goodsDto = new GoodsDto(goods);
+            goodsDtoList.add(goodsDto);
+        }
+        return goodsDtoList;
+    }
+
+    public MainCategory mainCategoryFindById(Long mainCategoryId){
+        return mainCategoryRepository.findById(mainCategoryId).orElseThrow(()->
+                new IllegalArgumentException("존재하지 않는 카테고리입니다."));
+    }
+
+    public SubCategory subCategoryFindById(Long subCategoryId){
+        return subCategoryRepository.findById(subCategoryId).orElseThrow(()->
+                new IllegalArgumentException("존재하지 않는 카테고리입니다."));
+    }
+
+
     public Goods categorySettingEntityTransformation(GoodsRequestDto goodsRequestDto){
         Long mainCategoryId = goodsRequestDto.getMainCategoryId();
         Long subCategoryId = goodsRequestDto.getSubCategoryId();
 
-        MainCategory mainCategory = mainCategoryRepository.findById(mainCategoryId).get();
-        SubCategory subCategory = subCategoryRepository.findById(subCategoryId).get();
-
-        goodsRequestDto.setMainCategory(mainCategory);
-        goodsRequestDto.setSubCategory(subCategory);
+        goodsRequestDto.setMainCategory(mainCategoryFindById(mainCategoryId));
+        goodsRequestDto.setSubCategory(subCategoryFindById(subCategoryId));
 
         Goods goods = goodsRequestDto.toEntity();
 
