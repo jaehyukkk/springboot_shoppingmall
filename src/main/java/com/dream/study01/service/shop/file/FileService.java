@@ -34,4 +34,8 @@ public class FileService {
         FileDto fileDto = new FileDto(file);
         return fileDto;
     }
+
+    public void removeFile(Long id){
+        fileRepository.deleteById(id);
+    }
 }

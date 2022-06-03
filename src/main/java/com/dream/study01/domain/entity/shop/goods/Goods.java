@@ -41,17 +41,18 @@ public class Goods {
     private SubCategory subCategory;
 
     @BatchSize(size = 100)
-    @OneToMany(mappedBy = "goods", fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
+    @OneToMany(mappedBy = "goods", fetch = FetchType.LAZY,cascade = CascadeType.MERGE, orphanRemoval = true)
     private List<File> files = new ArrayList<>();
+
 
     public void addFile(final File file){
         files.add(file);
         file.setGoods(this);
     }
-//    public void removeFile(final File file){
-//        files.remove(file);
-//        file.setGoods(null);
-//    }
+    public void removeFile(final File file){
+        files.remove(file);
+        file.setGoods(null);
+    }
 
     @CreatedDate
     private LocalDateTime createdDate;

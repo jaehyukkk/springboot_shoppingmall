@@ -36,8 +36,6 @@ public class TokenProvider {
         this.key = Keys.hmacShaKeyFor(keyBytes);
     }
 
-
-
     public TokenDto generateTokenDto(Authentication authentication) {
         // 권한들 가져오기
         String authorities = authentication.getAuthorities().stream()
@@ -82,6 +80,10 @@ public class TokenProvider {
                 Arrays.stream(claims.get(AUTHORITIES_KEY).toString().split(","))
                         .map(SimpleGrantedAuthority::new)
                         .collect(Collectors.toList());
+
+        log.info("===================================");
+        log.info(authorities.toString());
+        log.info("===================================");
 
         // UserDetails 객체를 만들어서 Authentication 리턴
         UserDetails principal = new User(claims.getSubject(), "", authorities);

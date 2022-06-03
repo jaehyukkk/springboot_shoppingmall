@@ -1,13 +1,12 @@
 package com.dream.study01.controller.shop.goods;
 
+import com.dream.study01.aop.AdminRights;
 import com.dream.study01.domain.entity.shop.goods.Goods;
+import com.dream.study01.dto.PageRequestDto;
 import com.dream.study01.dto.shop.goods.GoodsDto;
 import com.dream.study01.dto.shop.goods.GoodsRequestDto;
-import com.dream.study01.service.shop.file.FileService;
 import com.dream.study01.service.shop.goods.GoodsService;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.data.web.PageableDefault;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,14 +17,13 @@ import java.util.List;
 public class GoodsController {
 
    private final GoodsService goodsService;
-   private final FileService fileService;
 
-   GoodsController(GoodsService goodsService, FileService fileService){
+   GoodsController(GoodsService goodsService){
        this.goodsService = goodsService;
-       this.fileService = fileService;
    }
 
     @PostMapping("/api/v1/goods")
+//    @AdminRights
     public ResponseEntity<Object> createGoods(@RequestParam(value= "file", required = false)List<MultipartFile> multipartFiles, GoodsRequestDto goodsRequestDto){
         try{
             Goods goods = goodsService.createGoods(goodsRequestDto,multipartFiles);
@@ -37,6 +35,7 @@ public class GoodsController {
     }
 
     @PutMapping("/api/v1/goods/{id}")
+//    @AdminRights
     public ResponseEntity<Object> updateGoods(@RequestParam(value= "file", required = false)List<MultipartFile> multipartFiles, GoodsRequestDto goodsRequestDto){
        try{
            goodsService.updateGoods(goodsRequestDto, multipartFiles);
@@ -60,10 +59,10 @@ public class GoodsController {
     }
 
     @GetMapping("/api/v1/main-category/{mainCategoryId}/sub-category/{subCategoryId}/goods")
-    public ResponseEntity<Object> getSubCategoryGoodsList(@PathVariable Long mainCategoryId, @PathVariable Long subCategoryId, @PageableDefault(page = 0, size = 5, sort = "id", direction = Sort.Direction.DESC) Pageable pageable){
+    public ResponseEntity<Object> getSubCategoryGoodsList(@PathVariable Long mainCategoryId, @PathVariable Long subCategoryId, PageRequestDto pageRequestDto){
        try{
-           List<GoodsDto> goodsDtoList = goodsService.getSubCategoryGoodsList(mainCategoryId,subCategoryId,pageable);
-           return new ResponseEntity<>(goodsDtoList, HttpStatus.OK);
+           Page<GoodsDto> goodsDtoPage = goodsService.getSubCategoryGoodsList(mainCategoryId,subCategoryId,pageRequestDto);
+           return new ResponseEntity<>(goodsDtoPage, HttpStatus.OK);
        } catch (Exception ex){
            return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
        }
@@ -80,6 +79,19 @@ public class GoodsController {
     public ResponseEntity<GoodsDto> getGoods(@PathVariable("id") Long id){
        GoodsDto goodsDto = goodsService.getGoods(id);
        return new ResponseEntity<>(goodsDto,HttpStatus.OK);
+    }
+
+    @DeleteMapping("/api/v1/goods/{id}")
+//    @AdminRights
+    public ResponseEntity<?> removeGoods(@PathVariable("id") Long id){
+       try{
+           goodsService.removeGoods(id);
+           return new ResponseEntity<>(HttpStatus.OK);
+       } catch (Exception ex){
+           ex.printStackTrace();
+           return new ResponseEntity<>(ex.getMessage(),HttpStatus.BAD_REQUEST);
+       }
+
     }
 
 }

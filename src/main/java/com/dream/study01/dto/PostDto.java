@@ -3,12 +3,14 @@ package com.dream.study01.dto;
 import com.dream.study01.domain.entity.Post;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class PostDto {
 
     private Long id;

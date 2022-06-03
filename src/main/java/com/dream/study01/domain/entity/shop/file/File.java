@@ -46,4 +46,7 @@ public class File {
         this.mainImgYn = mainImgYn;
         this.goods = goods;
     }
+
+    public File(File file) {
+    }
 }

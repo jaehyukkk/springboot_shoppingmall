@@ -29,6 +29,7 @@ public class GoodsDto {
     private List<FileDto> files;
     private LocalDateTime createdDate;
     private LocalDateTime updateDate;
+    private Goods goods;
 
 
     public GoodsDto(Goods goods) {

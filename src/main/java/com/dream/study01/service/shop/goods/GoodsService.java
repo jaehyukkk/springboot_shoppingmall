@@ -2,18 +2,23 @@ package com.dream.study01.service.shop.goods;
 
 import com.dream.study01.domain.entity.shop.category.MainCategory;
 import com.dream.study01.domain.entity.shop.category.SubCategory;
+import com.dream.study01.domain.entity.shop.file.File;
 import com.dream.study01.domain.entity.shop.goods.Goods;
 import com.dream.study01.domain.repository.shop.category.MainCategoryRepository;
 import com.dream.study01.domain.repository.shop.category.SubCategoryRepository;
 import com.dream.study01.domain.repository.shop.goods.GoodsRepository;
+import com.dream.study01.dto.PageRequestDto;
+import com.dream.study01.dto.PageResultDto;
 import com.dream.study01.dto.shop.file.FileDto;
 import com.dream.study01.dto.shop.goods.GoodsDto;
 import com.dream.study01.dto.shop.goods.GoodsRequestDto;
 import com.dream.study01.service.shop.file.FileService;
 import com.dream.study01.service.shop.file.FileSetting;
 import com.dream.study01.util.MD5Generator;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -24,8 +29,11 @@ import java.security.NoSuchAlgorithmException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class GoodsService {
 
     private final GoodsRepository goodsRepository;
@@ -124,19 +132,33 @@ public class GoodsService {
 
     }
 
-    public List<GoodsDto> getSubCategoryGoodsList(Long mainCategoryId, Long subCategoryId, Pageable pageable){
+    public Page<GoodsDto> getSubCategoryGoodsList(Long mainCategoryId, Long subCategoryId, PageRequestDto requestDto){
+
+        Pageable pageable = requestDto.getPageble(Sort.by("id").descending());
 
         Page<Goods> goodsList = goodsRepository.findAllByMainCategoryAndSubCategory(
                 mainCategoryFindById(mainCategoryId)
                 ,subCategoryFindById(subCategoryId)
                 ,pageable);
 
-        List<GoodsDto> goodsDtoList = new ArrayList<>();
-        for(Goods goods : goodsList){
-            GoodsDto goodsDto = new GoodsDto(goods);
-            goodsDtoList.add(goodsDto);
-        }
-        return goodsDtoList;
+        return goodsList.map(GoodsDto::new);
+    }
+
+
+
+
+
+    @Transactional
+    public void removeGoods(Long id){
+       Goods goods = goodsRepository.findByIdFetch(id);
+       List<FileDto> fileList = goods.getFiles().stream().map(FileDto::new).collect(Collectors.toList());
+       for(FileDto fileDto : fileList){
+//           log.info("===================================");
+//           log.info("파일이름 : " + fileDto.getOrigFilename());
+//           log.info("===================================");
+           goods.removeFile(fileDto.toEntity());
+       }
+        goodsRepository.deleteById(id);
     }
 
     public MainCategory mainCategoryFindById(Long mainCategoryId){
@@ -150,7 +172,7 @@ public class GoodsService {
     }
 
 
-    public Goods categorySettingEntityTransformation(GoodsRequestDto goodsRequestDto){
+    Goods categorySettingEntityTransformation(GoodsRequestDto goodsRequestDto){
         Long mainCategoryId = goodsRequestDto.getMainCategoryId();
         Long subCategoryId = goodsRequestDto.getSubCategoryId();
 
@@ -161,4 +183,5 @@ public class GoodsService {
 
         return goods;
     }
+
 }
