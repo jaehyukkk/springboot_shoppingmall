@@ -23,8 +23,8 @@ public class PostService {
         this.userService = userService;
     }
 
-    public Post createPost(Post post){
-        return postRepository.save(post);
+    public Post createPost(PostDto postDto){
+        return postRepository.save(postDto.toEntity());
     }
 
     public List<PostDto> getPostList(){

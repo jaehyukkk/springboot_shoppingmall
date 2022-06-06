@@ -9,6 +9,7 @@ import com.dream.study01.dto.TokenRequestDto;
 import com.dream.study01.dto.UserRequestDto;
 import com.dream.study01.dto.UserResponseDto;
 import com.dream.study01.jwt.TokenProvider;
+import com.dream.study01.service.shop.cart.CartService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -26,14 +27,16 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final TokenProvider tokenProvider;
     private final RefreshTokenRepository refreshTokenRepository;
+    private final CartService cartService;
 
     @Transactional
     public UserResponseDto signup(UserRequestDto userRequestDto){
         if(userRepository.existsByEmail(userRequestDto.getEmail())){
             throw new RuntimeException("이미 가입되있는 유저입니다");
         }
-        User user = userRequestDto.toUser(passwordEncoder);
-        return UserResponseDto.of(userRepository.save(user));
+        User user = userRepository.save(userRequestDto.toUser(passwordEncoder));
+        cartService.createCart(user);
+        return UserResponseDto.of(user);
     }
 
     @Transactional

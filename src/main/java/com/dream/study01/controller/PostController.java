@@ -19,9 +19,9 @@ public class PostController {
     }
 
     @PostMapping(value="/api/v1/post")
-    public ResponseEntity<?> createPost(@RequestBody Post post){
+    public ResponseEntity<?> createPost(@RequestBody PostDto postDto){
 
-        return new ResponseEntity<>(postService.createPost(post), HttpStatus.OK);
+        return new ResponseEntity<>(postService.createPost(postDto), HttpStatus.OK);
     }
 
     @GetMapping(value = "/api/v1/post")

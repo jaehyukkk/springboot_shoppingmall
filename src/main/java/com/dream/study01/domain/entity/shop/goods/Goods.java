@@ -40,10 +40,8 @@ public class Goods {
     @JoinColumn(name = "SubCategory_id")
     private SubCategory subCategory;
 
-    @BatchSize(size = 100)
     @OneToMany(mappedBy = "goods", fetch = FetchType.LAZY,cascade = CascadeType.MERGE, orphanRemoval = true)
     private List<File> files = new ArrayList<>();
-
 
     public void addFile(final File file){
         files.add(file);

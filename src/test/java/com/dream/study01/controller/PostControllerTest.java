@@ -6,6 +6,7 @@ import com.dream.study01.dto.PostDto;
 import com.dream.study01.jwt.TokenProvider;
 import com.dream.study01.service.PostService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -49,8 +50,22 @@ class PostControllerTest {
     @Test
     @DisplayName("POST 업로드 테스트")
     public void postUploadTest() throws Exception {
-        Post post = new Post(null,"jh","title","content",1);
-        String content = new ObjectMapper().writeValueAsString(post);
+        PostDto postDto = PostDto.builder()
+                .content("hello")
+                .title("title")
+                .hit(1)
+                .writer("Jaehyuk")
+                .build();
+
+        Post post = Post.builder()
+                .id(1L)
+                .content("hello")
+                .title("title")
+                .hit(1)
+                .writer("Jaehyuk")
+                .build();
+
+        String content = new Gson().toJson(postDto);
 
         given(postService.createPost(any())).willReturn(post);
         final ResultActions resultActions = mockMvc.perform(post("/api/v1/post")

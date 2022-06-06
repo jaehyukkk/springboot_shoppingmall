@@ -5,6 +5,7 @@ import com.dream.study01.domain.entity.shop.category.SubCategory;
 import com.dream.study01.domain.entity.shop.file.File;
 import com.dream.study01.domain.entity.shop.goods.Goods;
 import com.dream.study01.dto.shop.file.FileDto;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -27,7 +28,9 @@ public class GoodsDto {
     private MainCategory mainCategory;
     private SubCategory subCategory;
     private List<FileDto> files;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
     private LocalDateTime createdDate;
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Seoul")
     private LocalDateTime updateDate;
     private Goods goods;
 

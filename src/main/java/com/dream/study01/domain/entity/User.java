@@ -1,5 +1,6 @@
 package com.dream.study01.domain.entity;
 
+import com.dream.study01.domain.entity.shop.cart.Cart;
 import com.dream.study01.enums.role.UserRole;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -30,6 +31,7 @@ public class User implements UserDetails {
     private String name;
 
     private String userRole;
+
 
     @Builder
     public User(String email, String password, String name, String userRole) {

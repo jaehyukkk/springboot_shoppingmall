@@ -51,7 +51,7 @@ public class GoodsService {
 
     @Transactional
     public Goods createGoods(GoodsRequestDto goodsRequestDto, List<MultipartFile> multipartFiles) throws IOException, NoSuchAlgorithmException {
-        Goods goods = categorySettingEntityTransformation(goodsRequestDto);
+        Goods goods = categorySetting(goodsRequestDto).toEntity();
 
         for(MultipartFile multipartFile : multipartFiles){
 
@@ -70,12 +70,10 @@ public class GoodsService {
 
     @Transactional
     public void updateGoods(GoodsRequestDto goodsRequestDto, List<MultipartFile> multipartFiles) throws IOException, NoSuchAlgorithmException {
-        Goods goods = categorySettingEntityTransformation(goodsRequestDto);
-        Long getGoodsId = goodsRequestDto.getId();
-        Goods getGoods = goodsRepository.findById(getGoodsId).get();
-
-        LocalDateTime createdDate = getGoods.getCreatedDate();
-        goodsRequestDto.setCreatedDate(createdDate);
+        Goods goods = categorySetting(goodsRequestDto).toEntity();
+        Goods getGoods = goodsRepository.findById(goodsRequestDto.getId()).orElseThrow(()->
+                new IllegalArgumentException("해당아이디가 존재하지 않습니다."));
+        goodsRequestDto.setCreatedDate(getGoods.getCreatedDate());
 
         int i = 0;
         if(multipartFiles != null){
@@ -90,8 +88,13 @@ public class GoodsService {
                 fileDto.setGoods(goods);
 
                 if(!goodsRequestDto.getFileIds().isEmpty()){
-                    fileDto.setId(goodsRequestDto.getFileIds().get(i));
+                    if(goodsRequestDto.getFileIds().get(i) != null){
+                        fileDto.setId(goodsRequestDto.getFileIds().get(i));
+                    }
                 }
+//                System.out.println("=======================================");
+//                System.out.println(goodsRequestDto.getFileIds().get(i));
+//                System.out.println("=======================================");
                 goods.addFile(fileDto.toEntity());
                 i++;
             }
@@ -103,14 +106,10 @@ public class GoodsService {
 
 
 
-    public List<GoodsDto> getGoodsList(){
-        List<Goods> goodsList = goodsRepository.findAllFetch();
-        List<GoodsDto> goodsDtoList = new ArrayList<>();
-        for(Goods goods : goodsList){
-            GoodsDto goodsDto = new GoodsDto(goods);
-            goodsDtoList.add(goodsDto);
-        }
-        return goodsDtoList;
+    public Page<GoodsDto> getGoodsList(PageRequestDto pageRequestDto){
+        Pageable pageable = pageRequestDto.getPageble(Sort.by("id").descending());
+        Page<Goods> goodsList = goodsRepository.findALlFetchBy(pageable);
+        return goodsList.map(GoodsDto::new);
     }
 
     public GoodsDto getGoods(Long id){
@@ -172,16 +171,14 @@ public class GoodsService {
     }
 
 
-    Goods categorySettingEntityTransformation(GoodsRequestDto goodsRequestDto){
+    GoodsRequestDto categorySetting(GoodsRequestDto goodsRequestDto){
         Long mainCategoryId = goodsRequestDto.getMainCategoryId();
         Long subCategoryId = goodsRequestDto.getSubCategoryId();
 
         goodsRequestDto.setMainCategory(mainCategoryFindById(mainCategoryId));
         goodsRequestDto.setSubCategory(subCategoryFindById(subCategoryId));
 
-        Goods goods = goodsRequestDto.toEntity();
-
-        return goods;
+        return goodsRequestDto;
     }
 
 }
