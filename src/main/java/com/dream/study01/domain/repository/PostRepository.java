@@ -19,4 +19,6 @@ public interface PostRepository extends JpaRepository<Post ,Long> {
 
     @Query(value = "select writer w from Post p where p.id = :id", nativeQuery = true)
     String findWriterInPost(@Param("id") Long id);
+
+
 }

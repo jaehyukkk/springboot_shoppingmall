@@ -21,9 +21,12 @@ public interface GoodsRepository extends JpaRepository<Goods, Long> {
     )
     Page<Goods> findALlFetchBy(Pageable pageable);
 
-    @Query(value = "select distinct u from Goods u left join fetch u.files where u.id = :id")
+    @Query(value = "select distinct g from Goods g left join fetch g.files where g.id = :id")
     Goods findByIdFetch(@Param("id") Long id);
 
     List<Goods> findAllByMainCategory(MainCategory mainCategory);
     Page<Goods> findAllByMainCategoryAndSubCategory(MainCategory mainCategory, SubCategory subCategory, Pageable pageable);
+
+    @Query("select g from Goods g where g.id in :ids")
+    List<Goods> findGoodsIn(List<Long> ids);
 }

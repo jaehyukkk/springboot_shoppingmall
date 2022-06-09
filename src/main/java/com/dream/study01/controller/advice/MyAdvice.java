@@ -8,7 +8,12 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class MyAdvice {
     @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<Object> illegalArgument(Exception ex){
+    public ResponseEntity<Object> illegalArgument(Exception ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(RuntimeException.class)
+    public ResponseEntity<Object> runtimeException(Exception ex){
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 }

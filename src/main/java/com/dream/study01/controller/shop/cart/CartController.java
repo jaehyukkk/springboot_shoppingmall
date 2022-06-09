@@ -9,12 +9,16 @@ import com.dream.study01.dto.shop.goods.GoodsRequestDto;
 import com.dream.study01.service.shop.cart.CartItemService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.apache.coyote.Response;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Log4j2
 @RestController
@@ -34,5 +38,20 @@ public class CartController {
         Long getUserId = (long) Integer.parseInt(principal.getName());
         Page<CartItemDto> cartItemList = cartItemService.getCartItemList(getUserId, pageRequestDto);
         return new ResponseEntity<>(cartItemList, HttpStatus.OK);
+    }
+
+    @GetMapping("/api/v1/cart-item/{cartIds}")
+    public ResponseEntity<List<CartItemDto>> getCartItems(@PathVariable("cartIds") Long[] cartIds, Principal principal){
+        Long getUserId = (long) Integer.parseInt(principal.getName());
+        List<Long> cartIdList = new ArrayList<>(Arrays.asList(cartIds));
+        List<CartItemDto> cartItemDtoList = cartItemService.getCartItems(getUserId, cartIdList);
+
+        return new ResponseEntity<>(cartItemDtoList, HttpStatus.OK);
+    }
+
+    @PutMapping("/api/v1/cart-item/count")
+    public ResponseEntity<?> updateCartItemCount(@RequestParam("cartItemCount") int cartItemCount, @RequestParam("cartItemId") Long cartItemId){
+        int cartItem = cartItemService.updateItemCount(cartItemCount, cartItemId);
+        return new ResponseEntity<>(cartItem, HttpStatus.OK);
     }
 }

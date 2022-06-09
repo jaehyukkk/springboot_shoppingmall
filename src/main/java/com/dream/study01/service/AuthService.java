@@ -11,6 +11,7 @@ import com.dream.study01.dto.UserResponseDto;
 import com.dream.study01.jwt.TokenProvider;
 import com.dream.study01.service.shop.cart.CartService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
@@ -18,6 +19,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Log4j2
 @Service
 @RequiredArgsConstructor
 public class AuthService {
@@ -66,6 +68,11 @@ public class AuthService {
                 .orElseThrow(()-> new RuntimeException("로그아웃된 사용자입니다.."));
 
         if(!refreshToken.getValue().equals(tokenRequestDto.getRefreshToken())){
+            log.info("===============================");
+            log.info(tokenRequestDto.getRefreshToken());
+            log.info(refreshToken.getValue());
+            log.info("===============================");
+
             throw new RuntimeException("토큰의 유저 정보가 일치하지않습니다.");
         }
 

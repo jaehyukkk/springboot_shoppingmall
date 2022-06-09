@@ -35,6 +35,8 @@ dependencies {
 	testAnnotationProcessor 'org.projectlombok:lombok'
 	testCompileOnly 'org.projectlombok:lombok'
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.6.7'
+//	implementation group: 'org.hibernate', name: 'hibernate-gradle-plugin', version: '5.6.5.Final'
+
 	testImplementation 'org.springframework.security:spring-security-test'
 
 	implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.2'
