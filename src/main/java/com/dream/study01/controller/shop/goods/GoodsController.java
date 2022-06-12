@@ -56,10 +56,6 @@ public class GoodsController {
     @GetMapping("/api/v1/main-category/{mainCategoryId}/goods")
     public ResponseEntity<Object> getMainCategoryGoodsList(@PathVariable("mainCategoryId") Long mainCategoryId, Principal principal){
        try{
-//           System.out.println("============================");
-//           System.out.println(principal.getName());
-//           System.out.println("============================");
-
            List<GoodsDto> goodsDtoList = goodsService.getMainCategoryGoodsList(mainCategoryId);
            return new ResponseEntity<>(goodsDtoList,HttpStatus.OK);
        } catch (IllegalArgumentException ex){

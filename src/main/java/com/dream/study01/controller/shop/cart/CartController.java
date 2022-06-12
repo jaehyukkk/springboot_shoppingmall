@@ -54,4 +54,10 @@ public class CartController {
         int cartItem = cartItemService.updateItemCount(cartItemCount, cartItemId);
         return new ResponseEntity<>(cartItem, HttpStatus.OK);
     }
+
+    @DeleteMapping("/api/v1/cart-item/{cartItemId}")
+    public ResponseEntity<String> deleteCartItem(@PathVariable("cartItemId") Long cartItemId){
+        cartItemService.deleteCartItem(cartItemId);
+        return new ResponseEntity<>("삭제 성공",HttpStatus.OK);
+    }
 }

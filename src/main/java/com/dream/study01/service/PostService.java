@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class PostService {
@@ -71,7 +72,7 @@ public class PostService {
         String postEmail = postRepository.findWriterInPost(id);
         Long postUserId = userService.getUserInfo(postEmail).getId();
 
-        if(userId != postUserId){
+        if(!Objects.equals(userId, postUserId)){
             throw new ForbiddenException("권한없음", ErrorCode.FORBIDDEN);
         }
 

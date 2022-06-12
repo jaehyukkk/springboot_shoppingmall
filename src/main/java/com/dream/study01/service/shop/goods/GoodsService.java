@@ -51,7 +51,7 @@ public class GoodsService {
 
     @Transactional
     public Goods createGoods(GoodsRequestDto goodsRequestDto, List<MultipartFile> multipartFiles) throws IOException, NoSuchAlgorithmException {
-        Goods goods = categorySetting(goodsRequestDto).toEntity();
+        Goods goods = goodsRepository.save(categorySetting(goodsRequestDto).toEntity());
 
         for(MultipartFile multipartFile : multipartFiles){
 
@@ -63,9 +63,10 @@ public class GoodsService {
             fileDto.setOrigFilename(fileSetting.getOrigFilename());
             fileDto.setGoods(goods);
 
-            fileService.createFile(fileDto);
+            File file = fileService.createFile(fileDto);
+            goods.addFile(file);
         }
-        return goodsRepository.save(goods);
+        return goods;
     }
 
     @Transactional

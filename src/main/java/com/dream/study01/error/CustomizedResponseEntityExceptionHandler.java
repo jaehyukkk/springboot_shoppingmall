@@ -21,25 +21,6 @@ import java.util.Map;
 @RestController
 public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(Exception.class)
-    public final ResponseEntity<Object> handleAllException(Exception ex, WebRequest request){
-        ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(), request.getDescription(false));
-        return new ResponseEntity(errorDetails, HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-
-    @ExceptionHandler(ForbiddenException.class)
-    public ResponseEntity<ErrorResponse> ForbiddenException(ForbiddenException ex){
-        ErrorResponse response = new ErrorResponse(ex.getErrorCode());
-        return new ResponseEntity<>(response, HttpStatus.valueOf(ex.getErrorCode().getStatus()));
-    }
-    //test
-//    @ExceptionHandler(SignUpNotFoundException.class)
-//    public final ResponseEntity<Object> handleUserNotFoundException(SignUpNotFoundException ex, WebRequest request) {
-//        ErrorDetails errorDetails = new ErrorDetails(new Date(), ex.getMessage(),
-//                request.getDescription(false));
-//        return new ResponseEntity(errorDetails, HttpStatus.NOT_FOUND);
-//    }
-
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
                                                                   HttpHeaders headers, HttpStatus status, WebRequest request) {
@@ -51,7 +32,7 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 
         ErrorDetails errorDetails = new ErrorDetails(new Date(), "유효성 검사 실패",
                 validatorResult);
-        return new ResponseEntity(errorDetails, HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>(errorDetails, HttpStatus.BAD_REQUEST);
     }
 
 }

@@ -10,9 +10,10 @@ public enum ErrorCode {
     INTER_SERVER_ERROR(500,"COMMON-ERR-500","INTER SERVER ERROR"),
     EMAIL_DUPLICATION(400,"MEMBER-ERR-400","EMAIL DUPLICATED"),
     FORBIDDEN(403, "FORBIDDEN-ERR-403", "FORBIDDEN"),
+    PAYMENT_ERROR(400, "PAYMENT-ERROR-400", "PAYMENT ERROR"),
     ;
 
-    private int status;
-    private String errorCode;
-    private String message;
+    private final int status;
+    private final String errorCode;
+    private final String message;
 }

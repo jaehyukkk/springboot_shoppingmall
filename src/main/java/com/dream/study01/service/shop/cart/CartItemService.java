@@ -95,6 +95,10 @@ public class CartItemService{
         return cartItemDtoList;
     }
 
+    public void deleteCartItem(Long cartItemId) {
+        cartItemRepository.deleteById(cartItemId);
+    }
+
     @Transactional
     public int updateItemCount(int cartItemCount, Long cartItemId) {
         return cartItemRepository.updateItemCount(cartItemCount, cartItemId);

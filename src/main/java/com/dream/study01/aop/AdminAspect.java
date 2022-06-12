@@ -21,7 +21,6 @@ public class AdminAspect {
     public Object adminRights(ProceedingJoinPoint joinPoint) throws Throwable {
 
         HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-
         if(! request.isUserInRole(USER_ROLE)){
             throw new ForbiddenException("FORBIDDEN", ErrorCode.FORBIDDEN);
         }

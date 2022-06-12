@@ -12,6 +12,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,5 +50,28 @@ public class IssuanceCouponService {
         Pageable pageable = pageRequestDto.getPageble(Sort.by("id").descending());
         Page<IssuanceCoupon> issuanceCouponPage = issuanceCouponRepository.findAll(pageable);
         return issuanceCouponPage.map(IssuanceCouponDto::of);
+    }
+
+    @Transactional
+    public int userUpdateIssuanceCoupon(String email, Long issuanceCouponId) {
+        User user = userRepository.findByEmail(email).orElseThrow(()->
+        new IllegalArgumentException("유저 조회 결과가 없습니다."));
+
+        return issuanceCouponRepository.userUpdateIssuanceCoupon(user, issuanceCouponId);
+    }
+
+    public List<IssuanceCouponDto> getUserCouponList(Long userId){
+
+        User user = userRepository.findById(userId).orElseThrow(()->
+            new IllegalArgumentException("유저 조회 결과가 없습니다."));
+
+        List<IssuanceCoupon> issuanceCouponList = issuanceCouponRepository.findByUserOrderByIdDesc(user);
+        List<IssuanceCouponDto> issuanceCouponDtoList = new ArrayList<>();
+
+        for(IssuanceCoupon issuanceCoupon : issuanceCouponList){
+            issuanceCouponDtoList.add(IssuanceCouponDto.of(issuanceCoupon));
+        }
+
+        return issuanceCouponDtoList;
     }
 }

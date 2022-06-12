@@ -23,8 +23,8 @@ public class FileService {
         this.fileRepository = fileRepository;
     }
 
-    public void createFile(FileDto fileDto) {
-        fileRepository.save(fileDto.toEntity());
+    public File createFile(FileDto fileDto) {
+        return fileRepository.save(fileDto.toEntity());
     }
 
 
