@@ -17,12 +17,11 @@ public class MainCategoryDto {
     private LocalDateTime updatedDate;
 
     public MainCategory toEntity(){
-        MainCategory mainCategory = MainCategory.builder()
+
+        return MainCategory.builder()
                 .id(id)
                 .subject(subject)
                 .build();
-
-        return mainCategory;
     }
 
     @Builder

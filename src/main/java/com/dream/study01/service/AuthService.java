@@ -68,11 +68,6 @@ public class AuthService {
                 .orElseThrow(()-> new RuntimeException("로그아웃된 사용자입니다.."));
 
         if(!refreshToken.getValue().equals(tokenRequestDto.getRefreshToken())){
-            log.info("===============================");
-            log.info(tokenRequestDto.getRefreshToken());
-            log.info(refreshToken.getValue());
-            log.info("===============================");
-
             throw new RuntimeException("토큰의 유저 정보가 일치하지않습니다.");
         }
 

@@ -19,11 +19,10 @@ public class CartDto {
     private LocalDateTime updatedDate;
 
     public Cart toEntity() {
-        Cart cart = Cart.builder()
+        return Cart.builder()
                 .id(id)
                 .user(user)
                 .build();
-        return cart;
     }
 
     @Builder

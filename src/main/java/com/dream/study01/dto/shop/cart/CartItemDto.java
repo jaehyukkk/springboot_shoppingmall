@@ -25,7 +25,7 @@ public class CartItemDto {
     private LocalDateTime updatedDate;
 
     public CartItem toEntity(){
-        CartItem cartItem = CartItem.builder()
+        return CartItem.builder()
                 .id(id)
                 .goods(goods)
                 .cart(cart)
@@ -33,7 +33,6 @@ public class CartItemDto {
                 .createdDate(createdDate)
                 .updatedDate(updatedDate)
                 .build();
-        return cartItem;
     }
 
     @Builder

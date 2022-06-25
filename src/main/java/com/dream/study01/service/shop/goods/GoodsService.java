@@ -93,19 +93,12 @@ public class GoodsService {
                         fileDto.setId(goodsRequestDto.getFileIds().get(i));
                     }
                 }
-//                System.out.println("=======================================");
-//                System.out.println(goodsRequestDto.getFileIds().get(i));
-//                System.out.println("=======================================");
-                goods.addFile(fileDto.toEntity());
                 i++;
             }
         }
         goods.update(goodsRequestDto);
         goodsRepository.save(goods);
     }
-
-
-
 
     public Page<GoodsDto> getGoodsList(PageRequestDto pageRequestDto){
         Pageable pageable = pageRequestDto.getPageble(Sort.by("id").descending());
@@ -115,11 +108,8 @@ public class GoodsService {
 
     public GoodsDto getGoods(Long id){
         Goods goods = goodsRepository.findByIdFetch(id);
-        GoodsDto goodsDto = new GoodsDto(goods);
-        return goodsDto;
+        return new GoodsDto(goods);
     }
-
-
 
     public List<GoodsDto> getMainCategoryGoodsList(Long mainCategoryId){
         List<Goods> goodsList = goodsRepository.findAllByMainCategory(mainCategoryFindById(mainCategoryId));
@@ -144,18 +134,11 @@ public class GoodsService {
         return goodsList.map(GoodsDto::new);
     }
 
-
-
-
-
     @Transactional
     public void removeGoods(Long id){
        Goods goods = goodsRepository.findByIdFetch(id);
        List<FileDto> fileList = goods.getFiles().stream().map(FileDto::new).collect(Collectors.toList());
        for(FileDto fileDto : fileList){
-//           log.info("===================================");
-//           log.info("파일이름 : " + fileDto.getOrigFilename());
-//           log.info("===================================");
            goods.removeFile(fileDto.toEntity());
        }
         goodsRepository.deleteById(id);

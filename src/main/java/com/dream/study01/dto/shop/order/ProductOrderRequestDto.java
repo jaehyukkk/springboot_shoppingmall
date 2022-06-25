@@ -3,6 +3,7 @@ package com.dream.study01.dto.shop.order;
 import com.dream.study01.domain.entity.User;
 import com.dream.study01.domain.entity.shop.coupon.IssuanceCoupon;
 import com.dream.study01.domain.entity.shop.order.ProductOrder;
+import com.dream.study01.enums.order.OrderStatus;
 import lombok.*;
 
 import java.time.LocalDateTime;
@@ -25,6 +26,7 @@ public class ProductOrderRequestDto {
     private IssuanceCoupon issuanceCoupon;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
+    private String orderStatus;
     private List<Long> goodsIdList;
     private List<Integer> itemCountList;
 
@@ -40,7 +42,7 @@ public class ProductOrderRequestDto {
                 .address(address)
                 .phone(phone)
                 .issuanceCoupon(issuanceCoupon)
+                .orderStatus(OrderStatus.READY.getName())
                 .build();
     }
-
 }

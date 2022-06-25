@@ -20,12 +20,11 @@ public class SubCategoryDto {
     private LocalDateTime updatedDate;
 
     public SubCategory toEntity(){
-        SubCategory subCategory = SubCategory.builder()
+        return SubCategory.builder()
                 .id(id)
                 .subject(subject)
                 .mainCategory(mainCategory)
                 .build();
-        return subCategory;
     }
 
     @Builder

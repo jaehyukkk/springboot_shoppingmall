@@ -1,0 +1,159 @@
+2022-06-25 00:02:37.968  INFO 30827 --- [http-nio-8080-exec-2] com.dream.study01.jwt.TokenProvider      : 만료된 JWT 토큰입니다.
+2022-06-25 00:02:37.985  WARN 30827 --- [http-nio-8080-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NumberFormatException: For input string: "anonymousUser"]
+2022-06-25 00:02:38.016  INFO 30827 --- [http-nio-8080-exec-4] com.dream.study01.jwt.TokenProvider      : 만료된 JWT 토큰입니다.
+2022-06-25 00:02:38.020  INFO 30827 --- [http-nio-8080-exec-4] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 00:02:38.021  INFO 30827 --- [http-nio-8080-exec-4] com.dream.study01.jwt.TokenProvider      : [ROLE_ADMIN, ROLE_USER]
+2022-06-25 00:02:38.021  INFO 30827 --- [http-nio-8080-exec-4] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 00:12:55.195  INFO 30827 --- [http-nio-8080-exec-5] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 00:12:55.196  INFO 30827 --- [http-nio-8080-exec-5] com.dream.study01.jwt.TokenProvider      : [ROLE_ADMIN, ROLE_USER]
+2022-06-25 00:12:55.197  INFO 30827 --- [http-nio-8080-exec-5] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 00:23:21.581  INFO 30827 --- [http-nio-8080-exec-9] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 00:23:21.582  INFO 30827 --- [http-nio-8080-exec-9] com.dream.study01.jwt.TokenProvider      : [ROLE_ADMIN, ROLE_USER]
+2022-06-25 00:23:21.582  INFO 30827 --- [http-nio-8080-exec-9] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 01:22:42.501  WARN 30827 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=53m57s531ms).
+2022-06-25 02:16:53.790  WARN 30827 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=53m11s285ms).
+2022-06-25 02:42:50.442  WARN 30827 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=25m26s645ms).
+2022-06-25 02:44:38.083  INFO 30827 --- [http-nio-8080-exec-10] com.dream.study01.jwt.TokenProvider      : 만료된 JWT 토큰입니다.
+2022-06-25 02:44:38.109  WARN 30827 --- [http-nio-8080-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NumberFormatException: For input string: "anonymousUser"]
+2022-06-25 02:44:38.147  INFO 30827 --- [http-nio-8080-exec-2] com.dream.study01.jwt.TokenProvider      : 만료된 JWT 토큰입니다.
+2022-06-25 02:44:38.156  INFO 30827 --- [http-nio-8080-exec-2] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 02:44:38.157  INFO 30827 --- [http-nio-8080-exec-2] com.dream.study01.jwt.TokenProvider      : [ROLE_ADMIN, ROLE_USER]
+2022-06-25 02:44:38.157  INFO 30827 --- [http-nio-8080-exec-2] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 02:50:17.529  INFO 30827 --- [http-nio-8080-exec-4] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 02:50:17.533  INFO 30827 --- [http-nio-8080-exec-4] com.dream.study01.jwt.TokenProvider      : [ROLE_ADMIN, ROLE_USER]
+2022-06-25 02:50:17.533  INFO 30827 --- [http-nio-8080-exec-4] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 02:50:17.782  INFO 30827 --- [http-nio-8080-exec-6] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 02:50:17.783  INFO 30827 --- [http-nio-8080-exec-6] com.dream.study01.jwt.TokenProvider      : [ROLE_ADMIN, ROLE_USER]
+2022-06-25 02:50:17.783  INFO 30827 --- [http-nio-8080-exec-6] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 02:50:22.290  INFO 30827 --- [http-nio-8080-exec-7] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 02:50:22.290  INFO 30827 --- [http-nio-8080-exec-7] com.dream.study01.jwt.TokenProvider      : [ROLE_ADMIN, ROLE_USER]
+2022-06-25 02:50:22.290  INFO 30827 --- [http-nio-8080-exec-7] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 02:50:22.383  INFO 30827 --- [http-nio-8080-exec-9] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 02:50:22.384  INFO 30827 --- [http-nio-8080-exec-9] com.dream.study01.jwt.TokenProvider      : [ROLE_ADMIN, ROLE_USER]
+2022-06-25 02:50:22.384  INFO 30827 --- [http-nio-8080-exec-9] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 02:50:26.425  INFO 30827 --- [http-nio-8080-exec-8] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 02:50:26.426  INFO 30827 --- [http-nio-8080-exec-8] com.dream.study01.jwt.TokenProvider      : [ROLE_ADMIN, ROLE_USER]
+2022-06-25 02:50:26.426  INFO 30827 --- [http-nio-8080-exec-8] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 02:50:28.167  INFO 30827 --- [http-nio-8080-exec-2] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 02:50:28.168  INFO 30827 --- [http-nio-8080-exec-2] com.dream.study01.jwt.TokenProvider      : [ROLE_ADMIN, ROLE_USER]
+2022-06-25 02:50:28.168  INFO 30827 --- [http-nio-8080-exec-2] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 02:50:28.762  WARN 30827 --- [http-nio-8080-exec-2] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2022-06-25 02:52:07.850  INFO 30827 --- [http-nio-8080-exec-3] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 02:52:07.853  INFO 30827 --- [http-nio-8080-exec-3] com.dream.study01.jwt.TokenProvider      : [ROLE_ADMIN, ROLE_USER]
+2022-06-25 02:52:07.853  INFO 30827 --- [http-nio-8080-exec-3] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 02:52:08.434  INFO 30827 --- [http-nio-8080-exec-6] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 02:52:08.434  INFO 30827 --- [http-nio-8080-exec-6] com.dream.study01.jwt.TokenProvider      : [ROLE_ADMIN, ROLE_USER]
+2022-06-25 02:52:08.434  INFO 30827 --- [http-nio-8080-exec-6] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 02:52:08.459  WARN 30827 --- [http-nio-8080-exec-6] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2022-06-25 02:54:27.486  INFO 30827 --- [http-nio-8080-exec-7] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 02:54:27.489  INFO 30827 --- [http-nio-8080-exec-7] com.dream.study01.jwt.TokenProvider      : [ROLE_ADMIN, ROLE_USER]
+2022-06-25 02:54:27.489  INFO 30827 --- [http-nio-8080-exec-7] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 02:54:27.778  INFO 30827 --- [http-nio-8080-exec-9] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 02:54:27.779  INFO 30827 --- [http-nio-8080-exec-9] com.dream.study01.jwt.TokenProvider      : [ROLE_ADMIN, ROLE_USER]
+2022-06-25 02:54:27.779  INFO 30827 --- [http-nio-8080-exec-9] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 02:54:27.833  WARN 30827 --- [http-nio-8080-exec-9] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2022-06-25 02:56:57.807  INFO 30827 --- [http-nio-8080-exec-10] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 02:56:57.807  INFO 30827 --- [http-nio-8080-exec-10] com.dream.study01.jwt.TokenProvider      : [ROLE_ADMIN, ROLE_USER]
+2022-06-25 02:56:57.810  INFO 30827 --- [http-nio-8080-exec-10] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 02:56:57.849  INFO 30827 --- [http-nio-8080-exec-2] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 02:56:57.849  INFO 30827 --- [http-nio-8080-exec-2] com.dream.study01.jwt.TokenProvider      : [ROLE_ADMIN, ROLE_USER]
+2022-06-25 02:56:57.850  INFO 30827 --- [http-nio-8080-exec-2] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 02:56:57.862  WARN 30827 --- [http-nio-8080-exec-2] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2022-06-25 03:00:06.432  INFO 30827 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-06-25 03:00:06.446  INFO 30827 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-06-25 03:00:06.451  INFO 30827 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2022-06-25 03:00:30.483  INFO 43730 --- [restartedMain] com.dream.study01.Study01Application     : Starting Study01Application using Java 11.0.15 on jangjaehyeog-ui-MacBookPro.local with PID 43730 (/Users/jangjaehyeog/Downloads/study01/build/classes/java/main started by jangjaehyeog in /Users/jangjaehyeog/Downloads/study01)
+2022-06-25 03:00:30.485  INFO 43730 --- [restartedMain] com.dream.study01.Study01Application     : No active profile set, falling back to 1 default profile: "default"
+2022-06-25 03:00:30.557  INFO 43730 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-06-25 03:00:30.557  INFO 43730 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-06-25 03:00:31.962  INFO 43730 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-06-25 03:00:32.063  INFO 43730 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 92 ms. Found 13 JPA repository interfaces.
+2022-06-25 03:00:33.118  INFO 43730 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2022-06-25 03:00:33.130  INFO 43730 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2022-06-25 03:00:33.130  INFO 43730 --- [restartedMain] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.62]
+2022-06-25 03:00:33.224  INFO 43730 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2022-06-25 03:00:33.227  INFO 43730 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2668 ms
+2022-06-25 03:00:33.494  INFO 43730 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-06-25 03:00:33.554  INFO 43730 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 5.6.8.Final
+2022-06-25 03:00:33.713  INFO 43730 --- [restartedMain] o.hibernate.annotations.common.Version   : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-06-25 03:00:33.801  INFO 43730 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2022-06-25 03:00:33.969  INFO 43730 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2022-06-25 03:00:33.986  INFO 43730 --- [restartedMain] org.hibernate.dialect.Dialect            : HHH000400: Using dialect: org.hibernate.dialect.MySQL55Dialect
+2022-06-25 03:00:34.977  INFO 43730 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-06-25 03:00:34.987  INFO 43730 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-06-25 03:00:35.056  WARN 43730 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-06-25 03:00:36.344  INFO 43730 --- [restartedMain] o.s.s.web.DefaultSecurityFilterChain     : Will secure any request with [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@55a4d830, org.springframework.security.web.context.SecurityContextPersistenceFilter@1d775023, org.springframework.security.web.header.HeaderWriterFilter@7a70d818, org.springframework.security.web.authentication.logout.LogoutFilter@299c7c1b, com.dream.study01.jwt.JwtFilter@2871e68b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@668c543b, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@110eb92, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@9e8c150, org.springframework.security.web.session.SessionManagementFilter@28b3d2f8, org.springframework.security.web.access.ExceptionTranslationFilter@459db1b, org.springframework.security.web.access.intercept.AuthorizationFilter@41294935]
+2022-06-25 03:00:36.747  WARN 43730 --- [restartedMain] ion$DefaultTemplateResolverConfiguration : Cannot find template location: classpath:/templates/ (please add some templates or check your Thymeleaf configuration)
+2022-06-25 03:00:36.909  INFO 43730 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2022-06-25 03:00:36.979  INFO 43730 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2022-06-25 03:00:36.994  INFO 43730 --- [restartedMain] com.dream.study01.Study01Application     : Started Study01Application in 7.098 seconds (JVM running for 9.886)
+2022-06-25 03:00:41.379  INFO 43730 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-06-25 03:00:41.380  INFO 43730 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2022-06-25 03:00:41.384  INFO 43730 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2022-06-25 03:00:41.533  INFO 43730 --- [http-nio-8080-exec-1] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 03:00:41.533  INFO 43730 --- [http-nio-8080-exec-1] com.dream.study01.jwt.TokenProvider      : [ROLE_ADMIN, ROLE_USER]
+2022-06-25 03:00:41.534  INFO 43730 --- [http-nio-8080-exec-1] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 03:00:41.784  INFO 43730 --- [http-nio-8080-exec-2] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 03:00:41.785  INFO 43730 --- [http-nio-8080-exec-2] com.dream.study01.jwt.TokenProvider      : [ROLE_ADMIN, ROLE_USER]
+2022-06-25 03:00:41.785  INFO 43730 --- [http-nio-8080-exec-2] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 03:00:41.978  WARN 43730 --- [http-nio-8080-exec-2] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2022-06-25 03:00:44.253  INFO 43730 --- [http-nio-8080-exec-7] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 03:00:44.253  INFO 43730 --- [http-nio-8080-exec-7] com.dream.study01.jwt.TokenProvider      : [ROLE_ADMIN, ROLE_USER]
+2022-06-25 03:00:44.254  INFO 43730 --- [http-nio-8080-exec-7] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 03:00:44.257  WARN 43730 --- [http-nio-8080-exec-7] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2022-06-25 03:00:45.065  INFO 43730 --- [http-nio-8080-exec-2] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 03:00:45.065  INFO 43730 --- [http-nio-8080-exec-2] com.dream.study01.jwt.TokenProvider      : [ROLE_ADMIN, ROLE_USER]
+2022-06-25 03:00:45.065  INFO 43730 --- [http-nio-8080-exec-2] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 03:00:45.068  WARN 43730 --- [http-nio-8080-exec-2] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2022-06-25 03:00:46.057  INFO 43730 --- [http-nio-8080-exec-5] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 03:00:46.058  INFO 43730 --- [http-nio-8080-exec-5] com.dream.study01.jwt.TokenProvider      : [ROLE_ADMIN, ROLE_USER]
+2022-06-25 03:00:46.058  INFO 43730 --- [http-nio-8080-exec-5] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 03:00:46.065  WARN 43730 --- [http-nio-8080-exec-5] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2022-06-25 03:00:47.982  INFO 43730 --- [http-nio-8080-exec-10] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 03:00:47.982  INFO 43730 --- [http-nio-8080-exec-10] com.dream.study01.jwt.TokenProvider      : [ROLE_ADMIN, ROLE_USER]
+2022-06-25 03:00:47.982  INFO 43730 --- [http-nio-8080-exec-10] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 03:00:47.986  WARN 43730 --- [http-nio-8080-exec-10] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2022-06-25 03:00:48.580  INFO 43730 --- [http-nio-8080-exec-2] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 03:00:48.580  INFO 43730 --- [http-nio-8080-exec-2] com.dream.study01.jwt.TokenProvider      : [ROLE_ADMIN, ROLE_USER]
+2022-06-25 03:00:48.580  INFO 43730 --- [http-nio-8080-exec-2] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 03:00:48.583  WARN 43730 --- [http-nio-8080-exec-2] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2022-06-25 03:00:49.467  INFO 43730 --- [http-nio-8080-exec-5] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 03:00:49.467  INFO 43730 --- [http-nio-8080-exec-5] com.dream.study01.jwt.TokenProvider      : [ROLE_ADMIN, ROLE_USER]
+2022-06-25 03:00:49.467  INFO 43730 --- [http-nio-8080-exec-5] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 03:00:49.471  WARN 43730 --- [http-nio-8080-exec-5] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2022-06-25 03:00:50.733  INFO 43730 --- [http-nio-8080-exec-10] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 03:00:50.733  INFO 43730 --- [http-nio-8080-exec-10] com.dream.study01.jwt.TokenProvider      : [ROLE_ADMIN, ROLE_USER]
+2022-06-25 03:00:50.733  INFO 43730 --- [http-nio-8080-exec-10] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 03:00:50.738  WARN 43730 --- [http-nio-8080-exec-10] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2022-06-25 03:00:52.099  INFO 43730 --- [http-nio-8080-exec-2] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 03:00:52.099  INFO 43730 --- [http-nio-8080-exec-2] com.dream.study01.jwt.TokenProvider      : [ROLE_ADMIN, ROLE_USER]
+2022-06-25 03:00:52.099  INFO 43730 --- [http-nio-8080-exec-2] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 03:00:52.102  WARN 43730 --- [http-nio-8080-exec-2] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2022-06-25 03:00:53.117  INFO 43730 --- [http-nio-8080-exec-5] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 03:00:53.117  INFO 43730 --- [http-nio-8080-exec-5] com.dream.study01.jwt.TokenProvider      : [ROLE_ADMIN, ROLE_USER]
+2022-06-25 03:00:53.117  INFO 43730 --- [http-nio-8080-exec-5] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 03:00:53.119  WARN 43730 --- [http-nio-8080-exec-5] o.h.h.internal.ast.QueryTranslatorImpl   : HHH000104: firstResult/maxResults specified with collection fetch; applying in memory!
+2022-06-25 03:10:41.344  INFO 43730 --- [http-nio-8080-exec-2] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 03:10:41.346  INFO 43730 --- [http-nio-8080-exec-2] com.dream.study01.jwt.TokenProvider      : [ROLE_ADMIN, ROLE_USER]
+2022-06-25 03:10:41.346  INFO 43730 --- [http-nio-8080-exec-2] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 03:20:46.767  INFO 43730 --- [http-nio-8080-exec-5] com.dream.study01.jwt.TokenProvider      : 만료된 JWT 토큰입니다.
+2022-06-25 03:20:46.818  WARN 43730 --- [http-nio-8080-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NumberFormatException: For input string: "anonymousUser"]
+2022-06-25 03:20:47.116  INFO 43730 --- [http-nio-8080-exec-4] com.dream.study01.jwt.TokenProvider      : 만료된 JWT 토큰입니다.
+2022-06-25 03:20:47.185  INFO 43730 --- [http-nio-8080-exec-4] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 03:20:47.185  INFO 43730 --- [http-nio-8080-exec-4] com.dream.study01.jwt.TokenProvider      : [ROLE_ADMIN, ROLE_USER]
+2022-06-25 03:20:47.185  INFO 43730 --- [http-nio-8080-exec-4] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 03:31:09.188  INFO 43730 --- [http-nio-8080-exec-1] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 03:31:09.191  INFO 43730 --- [http-nio-8080-exec-1] com.dream.study01.jwt.TokenProvider      : [ROLE_ADMIN, ROLE_USER]
+2022-06-25 03:31:09.191  INFO 43730 --- [http-nio-8080-exec-1] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 03:41:09.436  INFO 43730 --- [http-nio-8080-exec-8] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 03:41:09.437  INFO 43730 --- [http-nio-8080-exec-8] com.dream.study01.jwt.TokenProvider      : [ROLE_ADMIN, ROLE_USER]
+2022-06-25 03:41:09.437  INFO 43730 --- [http-nio-8080-exec-8] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 03:51:10.640  INFO 43730 --- [http-nio-8080-exec-5] com.dream.study01.jwt.TokenProvider      : 만료된 JWT 토큰입니다.
+2022-06-25 03:51:10.691  WARN 43730 --- [http-nio-8080-exec-5] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [java.lang.NumberFormatException: For input string: "anonymousUser"]
+2022-06-25 03:51:10.758  INFO 43730 --- [http-nio-8080-exec-6] com.dream.study01.jwt.TokenProvider      : 만료된 JWT 토큰입니다.
+2022-06-25 03:51:10.777  INFO 43730 --- [http-nio-8080-exec-6] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 03:51:10.777  INFO 43730 --- [http-nio-8080-exec-6] com.dream.study01.jwt.TokenProvider      : [ROLE_ADMIN, ROLE_USER]
+2022-06-25 03:51:10.777  INFO 43730 --- [http-nio-8080-exec-6] com.dream.study01.jwt.TokenProvider      : ===================================
+2022-06-25 03:59:02.174  INFO 43730 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-06-25 03:59:02.199  INFO 43730 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2022-06-25 03:59:02.211  INFO 43730 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.

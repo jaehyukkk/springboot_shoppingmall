@@ -1,7 +1,6 @@
 package com.dream.study01.controller.shop.goods;
 
-import com.dream.study01.aop.AdminRights;
-import com.dream.study01.domain.entity.User;
+import com.dream.study01.aop.UserRights;
 import com.dream.study01.domain.entity.shop.goods.Goods;
 import com.dream.study01.dto.PageRequestDto;
 import com.dream.study01.dto.shop.goods.GoodsDto;
@@ -11,10 +10,12 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.security.Principal;
 import java.util.List;
 
@@ -29,19 +30,14 @@ public class GoodsController {
    }
 
     @PostMapping("/api/v1/goods")
-//    @AdminRights
-    public ResponseEntity<Object> createGoods(@RequestParam(value= "file", required = false)List<MultipartFile> multipartFiles, GoodsRequestDto goodsRequestDto){
-        try{
+    @UserRights("ROLE_ADMIN")
+    public ResponseEntity<Object> createGoods(@Valid GoodsRequestDto goodsRequestDto, @RequestParam(value= "file", required = false)List<MultipartFile> multipartFiles) throws NoSuchAlgorithmException, IOException {
             Goods goods = goodsService.createGoods(goodsRequestDto,multipartFiles);
             return new ResponseEntity<>(goods, HttpStatus.OK);
-        } catch (Exception e){
-            e.printStackTrace();
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }
     }
 
     @PutMapping("/api/v1/goods/{id}")
-//    @AdminRights
+    @UserRights("ROLE_ADMIN")
     public ResponseEntity<Object> updateGoods(@RequestParam(value= "file", required = false)List<MultipartFile> multipartFiles, GoodsRequestDto goodsRequestDto){
        try{
            goodsService.updateGoods(goodsRequestDto, multipartFiles);
@@ -88,7 +84,7 @@ public class GoodsController {
     }
 
     @DeleteMapping("/api/v1/goods/{id}")
-//    @AdminRights
+    @UserRights("ROLE_ADMIN")
     public ResponseEntity<?> removeGoods(@PathVariable("id") Long id){
        try{
            goodsService.removeGoods(id);
@@ -99,4 +95,7 @@ public class GoodsController {
        }
 
     }
+
+
+
 }

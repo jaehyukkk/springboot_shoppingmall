@@ -3,12 +3,16 @@ package com.dream.study01.controller;
 import com.dream.study01.domain.entity.Post;
 import com.dream.study01.dto.PostDto;
 import com.dream.study01.service.PostService;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Log4j2
 @RestController
 public class PostController {
 
@@ -47,4 +51,5 @@ public class PostController {
             postService.deletePost(id);
             return new ResponseEntity<>(null, HttpStatus.OK);
     }
+
 }

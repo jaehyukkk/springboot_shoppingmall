@@ -2,6 +2,7 @@ package com.dream.study01.domain.entity.shop.order;
 
 import com.dream.study01.domain.entity.User;
 import com.dream.study01.domain.entity.shop.coupon.IssuanceCoupon;
+import com.dream.study01.enums.order.OrderStatus;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -41,6 +42,8 @@ public class ProductOrder {
 
     private Integer phone;
 
+    private String orderStatus;
+
     @OneToMany(mappedBy = "productOrder", fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     private List<ProductOrderItem> productOrderItems = new ArrayList<>();
 
@@ -59,8 +62,10 @@ public class ProductOrder {
     @LastModifiedDate
     private LocalDateTime updatedDate;
 
+
     @Builder
-    public ProductOrder(Long id, User user, String paymentUserName, Integer price, String impUid, String memo, String address, Integer phone, IssuanceCoupon issuanceCoupon) {
+    public ProductOrder(Long id, User user, String paymentUserName, Integer price, String impUid, String memo, String address, Integer phone, IssuanceCoupon issuanceCoupon, String orderStatus
+    ) {
         this.id = id;
         this.user = user;
         this.paymentUserName = paymentUserName;
@@ -70,6 +75,7 @@ public class ProductOrder {
         this.address = address;
         this.phone = phone;
         this.issuanceCoupon = issuanceCoupon;
+        this.orderStatus = orderStatus;
     }
 }
 

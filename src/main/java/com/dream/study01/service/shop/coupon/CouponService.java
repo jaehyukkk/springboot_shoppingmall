@@ -17,8 +17,9 @@ public class CouponService {
         this.couponRepository = couponRepository;
     }
 
-    public Coupon createCoupon(CouponDto couponDto){
-        return couponRepository.save(couponDto.toEntity());
+    public CouponDto createCoupon(CouponDto couponDto){
+        Coupon coupon = couponRepository.save(couponDto.toEntity());
+        return CouponDto.of(coupon);
     }
 
     public List<CouponDto> getCouponList(){

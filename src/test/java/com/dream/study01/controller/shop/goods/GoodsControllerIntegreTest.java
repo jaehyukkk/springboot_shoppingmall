@@ -1,5 +1,6 @@
 package com.dream.study01.controller.shop.goods;
 
+import com.dream.study01.domain.entity.shop.goods.Goods;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,5 @@ public class GoodsControllerIntegreTest {
 
     @Test
     public void save_테스트(){
-
     }
 }

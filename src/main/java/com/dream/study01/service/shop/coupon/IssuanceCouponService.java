@@ -74,4 +74,10 @@ public class IssuanceCouponService {
 
         return issuanceCouponDtoList;
     }
+
+    public void useUpdateIssuanceCoupon(Long id) {
+        issuanceCouponRepository.useUpdateIssuanceCoupon(id);
+    }
+
+
 }

@@ -15,7 +15,8 @@ import java.util.List;
 
 @Repository
 public interface IssuanceCouponRepository extends JpaRepository<IssuanceCoupon, Long> {
-    List<IssuanceCoupon> findByUserOrderByIdDesc(User user);
+    @Query("select c from IssuanceCoupon c where c.user = :user and c.isUse = false")
+    List<IssuanceCoupon> findByUserOrderByIdDesc(@Param("user") User user);
     Page<IssuanceCoupon> findAll(Pageable pageable);
 
     @Transactional
@@ -23,4 +24,9 @@ public interface IssuanceCouponRepository extends JpaRepository<IssuanceCoupon, 
     @Query("update IssuanceCoupon c set c.user = :user where c.id = :id")
     int userUpdateIssuanceCoupon(@Param("user") User user,
                                  @Param("id") Long issuanceCouponId);
+
+    @Transactional
+    @Modifying
+    @Query("update IssuanceCoupon c set c.isUse = true where c.id = :id")
+    void useUpdateIssuanceCoupon(@Param("id") Long issuanceCouponId);
 }

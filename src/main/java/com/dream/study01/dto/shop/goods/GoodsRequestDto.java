@@ -7,6 +7,9 @@ import com.dream.study01.dto.shop.file.FileDto;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,7 +21,9 @@ public class GoodsRequestDto {
     private Long id;
     private String title;
     private String description;
+    @NotNull(message = "가격은 필수사항입니다.")
     private Integer price;
+    @NotNull(message = "메인카테고리는 필수 선택사항입니다.")
     private Long mainCategoryId;
     private Long subCategoryId;
     private List<Long> fileIds;
