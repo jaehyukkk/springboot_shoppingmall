@@ -57,6 +57,7 @@ public class ProductOrderService {
         this.iamportService = iamportService;
     }
 
+    //들어온 주문 정보를 저장
     @Transactional
     public ProductOrder createOrder(ProductOrderRequestDto productOrderRequestDto, Long userId){
         PaymentCancelResponseDto paymentCancelResponseDto = new PaymentCancelResponseDto(productOrderRequestDto.getImpUid(), productOrderRequestDto.getPrice());
@@ -84,8 +85,8 @@ public class ProductOrderService {
         List<Goods> goodsList = goodsRepository.findGoodsIn(productOrderRequestDto.getGoodsIdList());
         List<Integer> itemCountList = productOrderRequestDto.getItemCountList();
 
+        //상품 아이템과 갯수가 꼬이지않게 순서 다시 정렬 후 주문상품 아이템 저장
         List<Goods> newGoodsList = new ArrayList<>();
-
         for (int i = 0; i < goodsList.size(); i++) {
             for (Goods goods : goodsList) {
                 if(Objects.equals(productOrderRequestDto.getGoodsIdList().get(i), goods.getId())){
@@ -99,20 +100,21 @@ public class ProductOrderService {
 
             ProductOrderItem productOrderItem = productOrderItemRepository.save(productOrderItemDto.toEntity());
             productOrder.addOrderItem(productOrderItem);
-        }
+        } //for end
 
         return productOrder;
     }
 
-    public List<ProductOrderResponseDto> getProductOrderList(Long userId) {
-        List<ProductOrder> productOrderList = productOrderRepository.findAllFetchBy(userId);
-        List<ProductOrderResponseDto> productOrderResponseDtoList = new ArrayList<>();
-        for (ProductOrder productOrder : productOrderList) {
-            productOrderResponseDtoList.add(ProductOrderResponseDto.of(productOrder));
-        }
-        return productOrderResponseDtoList;
-    }
+//    public List<ProductOrderResponseDto> getProductOrderList(Long userId) {
+//        List<ProductOrder> productOrderList = productOrderRepository.findAllFetchBy(userId);
+//        List<ProductOrderResponseDto> productOrderResponseDtoList = new ArrayList<>();
+//        for (ProductOrder productOrder : productOrderList) {
+//            productOrderResponseDtoList.add(ProductOrderResponseDto.of(productOrder));
+//        }
+//        return productOrderResponseDtoList;
+//    }
 
+    //유저의 주문목록 가져오기
     public List<ProductOrderItemDto> getProductOrderItemList(Long userId) {
         List<ProductOrderItem> productOrderItemList = productOrderItemRepository.findAllByUser(userId);
         List<ProductOrderItemDto> productOrderItemDtoList = new ArrayList<>();
@@ -122,12 +124,14 @@ public class ProductOrderService {
         return productOrderItemDtoList;
     }
 
+    //주문상품 하나 가져오기
     public ProductOrderResponseDto getProductOrder(Long productOrderId) {
         ProductOrder productOrder = productOrderRepository.findAllFetchByUserAndId(productOrderId);
 
         return ProductOrderResponseDto.of(productOrder);
     }
 
+    //결제 된 금액이 실제 결제해야 할 금액과 맞는지 체크
     @Transactional
     public boolean paymentCheck(String access_token, ProductOrderRequestDto productOrderRequestDto) throws IOException {
 
@@ -135,6 +139,7 @@ public class ProductOrderService {
         int couponDiscountAmount = 0;
         Long issuanceCouponId = productOrderRequestDto.getIssuanceCouponId();
 
+        //쿠폰을 사용 하였다면 나중에 비교하기 위해서 쿠폰을 조회 후 할인금액을 가져옴
         if(!Objects.isNull(issuanceCouponId)){
 
             PaymentCancelResponseDto paymentCancelResponseDto =
@@ -146,6 +151,7 @@ public class ProductOrderService {
             couponDiscountAmount = issuanceCoupon.getCoupon().getPrice();
         }
 
+        //실제 결제 된 금액 가져오기
         int paymentAmount = iamportService.paymentInfo(productOrderRequestDto.getImpUid(), access_token);
 
         List<Goods> goodsList = goodsRepository.findGoodsIn(productOrderRequestDto.getGoodsIdList());
@@ -164,15 +170,18 @@ public class ProductOrderService {
             realAmount += newGoodsList.get(i).getPrice() * itemCountList.get(i);
         }
 
+        //결제된 금액이랑 차이가 없으면 트루 반환
         return paymentAmount == realAmount - couponDiscountAmount;
     }
 
+    //관리자 페이지에서 주문목록 전체 확인
     public Page<ProductOrderResponseDto> getProductOrderAllList(PageRequestDto pageRequestDto) {
         Pageable pageable = pageRequestDto.getPageble(Sort.by("id").descending());
         Page<ProductOrder> productOrderPage = productOrderRepository.findAllFetchPageBy(pageable);
         return productOrderPage.map(ProductOrderResponseDto::of);
     }
 
+    //배송상태 변경
     @Transactional
     public void productOrderStatusUpdate(Long id, final ProductOrderRequestDto p) {
         productOrderRepository.findById(id).orElseThrow(() ->

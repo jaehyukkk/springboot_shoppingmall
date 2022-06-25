@@ -36,6 +36,7 @@ public class IamportService {
         private int amount;
     }
 
+    //토큰 받아오기
     public String getToken() throws IOException{
 
         URL url = new URL("https://api.iamport.kr/users/getToken");
@@ -71,6 +72,7 @@ public class IamportService {
         return token;
     }
 
+    //상품의 정보 받아오기 ( 가격만 받아왔음 )
     public int paymentInfo(String imp_uid, String access_token) throws IOException {
         HttpsURLConnection conn = null;
         URL url = new URL("https://api.iamport.kr/payments/" + imp_uid);
@@ -91,6 +93,7 @@ public class IamportService {
         return response.getResponse().getAmount();
     }
 
+    //결제 취소
     public void paymentCancel(PaymentCancelResponseDto paymentCancelResponseDto) throws IOException{
         HttpsURLConnection conn = null;
         URL url = new URL("https://api.iamport.kr/payments/cancel");

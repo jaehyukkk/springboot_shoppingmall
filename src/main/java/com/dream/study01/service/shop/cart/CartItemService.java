@@ -34,6 +34,7 @@ public class CartItemService{
     private final UserRepository userRepository;
     private final CartRepository cartRepository;
 
+    //장바구니에 아이템 추가
     public CartItem createCartItem(Long userId,Long goodsId, int itemCount) {
         User user = userRepository.findById(userId).orElseThrow(() ->
                 new IllegalArgumentException("존재하지 않는 사용자입니다."));
@@ -44,8 +45,10 @@ public class CartItemService{
 
         CartItem cartItem = cartItemRepository.findByCartAndGoods(cart, goods);
 
+        //장바구니에 이미 동일한 아이템이 있을때
         if(!Objects.isNull(cartItem)){
             Gson gson = new Gson();
+
             ErrorMessage errorMessage = ErrorMessage.builder()
                     .message("이미 등록된 상품")
                     .data(String.valueOf(cartItem.getId()))
@@ -65,6 +68,7 @@ public class CartItemService{
         return cartItemRepository.save(cartItemDto.toEntity());
     }
 
+    //해당 유저의 카트 아이템 전부 가져오기
     public Page<CartItemDto> getCartItemList(Long userId, PageRequestDto pageRequestDto){
         Pageable pageable = pageRequestDto.getPageble(Sort.by("id").descending());
         User user = userRepository.findById(userId).orElseThrow(() ->
@@ -76,6 +80,7 @@ public class CartItemService{
         return cartItemList.map(CartItemDto::of);
     }
 
+    //주문화면으로 넘어갈 때 장바구니에서 선택한 아이템들
     public List<CartItemDto> getCartItems(Long userId, List<Long> cartIdList){
         User user = userRepository.findById(userId).orElseThrow(() ->
                 new IllegalArgumentException("존재하지 않는 사용자입니다."));
@@ -95,10 +100,13 @@ public class CartItemService{
         return cartItemDtoList;
     }
 
+
+    //카트 아이템 삭제
     public void deleteCartItem(Long cartItemId) {
         cartItemRepository.deleteById(cartItemId);
     }
 
+    //카트에 동일한 상품이 있을때 갯수만 올려주기
     @Transactional
     public int updateItemCount(int cartItemCount, Long cartItemId) {
         return cartItemRepository.updateItemCount(cartItemCount, cartItemId);

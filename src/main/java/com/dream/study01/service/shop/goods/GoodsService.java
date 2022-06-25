@@ -49,6 +49,7 @@ public class GoodsService {
         this.fileService = fileService;
     }
 
+    //상품생성
     @Transactional
     public Goods createGoods(GoodsRequestDto goodsRequestDto, List<MultipartFile> multipartFiles) throws IOException, NoSuchAlgorithmException {
         Goods goods = goodsRepository.save(categorySetting(goodsRequestDto).toEntity());
@@ -69,6 +70,7 @@ public class GoodsService {
         return goods;
     }
 
+    //상품 업데이트
     @Transactional
     public void updateGoods(GoodsRequestDto goodsRequestDto, List<MultipartFile> multipartFiles) throws IOException, NoSuchAlgorithmException {
         Goods goods = categorySetting(goodsRequestDto).toEntity();
@@ -77,17 +79,20 @@ public class GoodsService {
         goodsRequestDto.setCreatedDate(getGoods.getCreatedDate());
 
         int i = 0;
+        //수정 시 이미지정보도 같이 왔다면
         if(multipartFiles != null){
             for(MultipartFile multipartFile : multipartFiles){
                 FileDto fileDto = new FileDto();
 
                 FileSetting fileSetting = new FileSetting(multipartFile);
 
+                //일단 파일 생성
                 fileDto.setFilename(fileSetting.getFilename());
                 fileDto.setFilePath(fileSetting.getFilePath());
                 fileDto.setOrigFilename(fileSetting.getOrigFilename());
                 fileDto.setGoods(goods);
 
+                //파일의 아이디여부를 검사하여 아이디가 있으면 업데이트 처리, 없다면 파일추가
                 if(!goodsRequestDto.getFileIds().isEmpty()){
                     if(goodsRequestDto.getFileIds().get(i) != null){
                         fileDto.setId(goodsRequestDto.getFileIds().get(i));
@@ -100,17 +105,20 @@ public class GoodsService {
         goodsRepository.save(goods);
     }
 
+    //상품리스트
     public Page<GoodsDto> getGoodsList(PageRequestDto pageRequestDto){
         Pageable pageable = pageRequestDto.getPageble(Sort.by("id").descending());
         Page<Goods> goodsList = goodsRepository.findALlFetchBy(pageable);
         return goodsList.map(GoodsDto::new);
     }
 
+    //상품 디테일
     public GoodsDto getGoods(Long id){
         Goods goods = goodsRepository.findByIdFetch(id);
         return new GoodsDto(goods);
     }
 
+    //메인 카테고리에 해당하는 상품리스트
     public List<GoodsDto> getMainCategoryGoodsList(Long mainCategoryId){
         List<Goods> goodsList = goodsRepository.findAllByMainCategory(mainCategoryFindById(mainCategoryId));
         List<GoodsDto> goodsDtoList = new ArrayList<>();
@@ -122,6 +130,7 @@ public class GoodsService {
 
     }
 
+    //서브 카테고리에 해당하는 상품 리스트
     public Page<GoodsDto> getSubCategoryGoodsList(Long mainCategoryId, Long subCategoryId, PageRequestDto requestDto){
 
         Pageable pageable = requestDto.getPageble(Sort.by("id").descending());
@@ -134,6 +143,7 @@ public class GoodsService {
         return goodsList.map(GoodsDto::new);
     }
 
+    //상품 삭제
     @Transactional
     public void removeGoods(Long id){
        Goods goods = goodsRepository.findByIdFetch(id);

@@ -31,8 +31,7 @@ public class FileService {
     @Transactional
     public FileDto getFile(Long id){
         File file = fileRepository.findById(id).get();
-        FileDto fileDto = new FileDto(file);
-        return fileDto;
+        return new FileDto(file);
     }
 
     public void removeFile(Long id){

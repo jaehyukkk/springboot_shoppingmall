@@ -17,6 +17,7 @@ public class CartService {
         this.cartRepository = cartRepository;
     }
 
+    //회원가입 시 카트 생성해줌
     public Cart createCart(User user){
         CartDto cartDto = CartDto.builder()
                 .user(user)

@@ -17,11 +17,13 @@ public class CouponService {
         this.couponRepository = couponRepository;
     }
 
+    //쿠폰생성
     public CouponDto createCoupon(CouponDto couponDto){
         Coupon coupon = couponRepository.save(couponDto.toEntity());
         return CouponDto.of(coupon);
     }
 
+    //쿠폰리스트 가져오기
     public List<CouponDto> getCouponList(){
         List<Coupon> couponList = couponRepository.findAllByOrderByIdDesc();
         List<CouponDto> couponDtoList = new ArrayList<>();

@@ -29,6 +29,7 @@ public class IssuanceCouponService {
         this.userRepository = userRepository;
     }
 
+    //쿠폰 원하는 매수 발행해주기
     public List<IssuanceCoupon> createIssuanceCoupon(Long couponId, Integer issuesNum){
         Coupon coupon = couponRepository.getById(couponId);
 
@@ -46,12 +47,14 @@ public class IssuanceCouponService {
         return issuanceCouponList;
     }
 
+    //발행 된 쿠폰 리스트
     public Page<IssuanceCouponDto> getIssuanceCouponList(PageRequestDto pageRequestDto){
         Pageable pageable = pageRequestDto.getPageble(Sort.by("id").descending());
         Page<IssuanceCoupon> issuanceCouponPage = issuanceCouponRepository.findAll(pageable);
         return issuanceCouponPage.map(IssuanceCouponDto::of);
     }
 
+    //유저에게 쿠폰 발행
     @Transactional
     public int userUpdateIssuanceCoupon(String email, Long issuanceCouponId) {
         User user = userRepository.findByEmail(email).orElseThrow(()->
@@ -60,6 +63,7 @@ public class IssuanceCouponService {
         return issuanceCouponRepository.userUpdateIssuanceCoupon(user, issuanceCouponId);
     }
 
+    //자신에게 발행된 쿠폰리스트
     public List<IssuanceCouponDto> getUserCouponList(Long userId){
 
         User user = userRepository.findById(userId).orElseThrow(()->
