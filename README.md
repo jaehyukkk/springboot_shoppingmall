@@ -1,4 +1,4 @@
-# springboot_lotto
+# springboot_shoppingmall
 
 쇼핑몰의 기능 api를 제공합니다.
 
